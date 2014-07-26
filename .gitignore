@@ -1,0 +1,5 @@
+.DS_Store
+*.pyc
+dataset/
+categories/
+text/
