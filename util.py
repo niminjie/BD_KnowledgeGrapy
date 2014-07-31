@@ -4,7 +4,7 @@ def extract_text(dataset):
     attr_text = {}
     for entity, attr_list in dataset.entities.items():
         for attr_name, text in attr_list.items():
-            if attr_name != 'inLanguage':
+            if attr_name == 'description':
                 continue
             raw_text = []
             attr_text.setdefault(attr_name, [])
@@ -14,7 +14,8 @@ def extract_text(dataset):
                 if t not in attr_text[attr_name]:
                     attr_text[attr_name].append(t)
                     if DEBUG:
-                        print "%s appended a new text: %s" % (attr_name, t)
+                        # print "%s appended a new text: %s" % (attr_name, t)
+                        pass
     return attr_text
 
 def text_each_other(attr_text):
@@ -26,8 +27,9 @@ def text_each_other(attr_text):
                 for t2 in text:
                     if t1 == t2:
                         continue
-                    f.write("%s\t%s\n" % (t1.encode('gbk'), t2.encode('gbk')))
-                    f.flush()
+                    print "%s\t%s" % (t1, t2)
+                    # f.write("%s\t%s\n" % (t1.encode('gbk'), t2.encode('gbk')))
+                    # f.flush()
 
 def get_text_in_depth(text_list, out):
     if type(text_list) != type([1]):
